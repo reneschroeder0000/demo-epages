@@ -1,5 +1,7 @@
 package com.example.demo
 
+import com.epages.restdocs.apispec.WebTestClientRestDocumentationWrapper
+import com.epages.restdocs.apispec.WebTestClientRestDocumentationWrapper.resourceDetails
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs
@@ -37,7 +39,30 @@ class HelloWorldControllerTest(
                 )
             )
         )
+    }
 
-        // Then
+    @Test
+    fun `should return Hello World and document`() {
+        // Given
+        val response = webTestClient.get().uri("/hello").exchange()
+        val defaultGreeting = Greeting()
+
+        // When
+        response.expectStatus().isOk
+        response.expectBody<Greeting>()
+            .isEqualTo(defaultGreeting)
+
+        response.expectBody().consumeWith(
+            WebTestClientRestDocumentationWrapper.document(
+                identifier = "hello-world",
+                resourceDetails = resourceDetails(),
+                snippets = arrayOf(
+                    responseFields(
+                        fieldWithPath("greeting").description("The greeting"),
+                        fieldWithPath("who").description("Who is greeted")
+                    )
+                )
+            )
+        )
     }
 }

@@ -60,15 +60,6 @@ tasks.withType<Test> {
 	useJUnitPlatform()
 }
 
-//tasks.test {
-//	outputs.dir(snippetsDir)
-//}
-
-//tasks.asciidoctor {
-//	inputs.dir(snippetsdir)
-//	dependson(test)
-//}
-
 openapi3 {
 	title = "Hello World"
 	description = "API Examples for Hello World"
