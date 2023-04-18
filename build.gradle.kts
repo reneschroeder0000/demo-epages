@@ -44,8 +44,8 @@ dependencies {
 	testImplementation("io.projectreactor:reactor-test")
 	testImplementation("org.springframework.restdocs:spring-restdocs-webtestclient")
 	// Without those the test works
-	testImplementation("com.epages:restdocs-api-spec-webtestclient:0.17.1")
-	testImplementation("com.epages:restdocs-api-spec:0.17.1")
+	testImplementation("com.epages:restdocs-api-spec-webtestclient:0.18.0")
+	testImplementation("com.epages:restdocs-api-spec:0.18.0")
 }
 
 tasks.withType<KotlinCompile> {
